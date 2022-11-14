@@ -4,19 +4,27 @@
 
 #include <stdio.h>
 
-int main()
- {
     int unit,custid;
-    float amt, total_amt, sur_charge;
+    float amt,total_amt,sur_charge,gramt,netamt;
+    char name[30];
 
+    int main()
+{
     /* Input unit consumed from user */
-     printf("===============================\n");
-     printf("   ELECTRICITY BILLING SYSTEM:\n");
-    printf("===============================\n");
 
-    printf("Input Customer ID :");
-   scanf("%d",&custid);
-    printf("Enter total units consumed: ");
+
+
+     printf("\t\t============================================\n");
+    printf("\n\n\t\tWELLCOME TO GESCOM ELECTRTICITY DEPARTMENT\n\n");
+
+    printf("\t        Gulbarga Electricity Supply Company Limited\n\n");
+    printf("\t\t===========================================\n");
+
+    printf("\t\tInput Customer ID :");
+    scanf("%d",&custid);
+    printf("\t\tCustomer name :");
+    scanf("%s",name);
+    printf("\t\tEnter total units consumed: ");
     scanf("%d", &unit);
 
 
@@ -37,14 +45,24 @@ int main()
     {
         amt = 220 + ((unit-250) * 1.50);
     }
+     gramt = unit*amt;
+    if (gramt>300)
+    sur_charge = gramt*12/100.0;
+    netamt = gramt+sur_charge;
+    if (netamt  < 100)
+    netamt =100;
 
     /*
      * Calculate total electricity bill
      * after adding surcharge
      */
-    sur_charge = amt * 0.20;
-    total_amt  = amt + sur_charge;
-
-    printf("Electricity Bill = Rs. %.2f", total_amt);
+   sur_charge = amt * 0.20;
+   total_amt  = amt + sur_charge;
+   printf("\t\tunit Consumed                       :%d\n",unit);
+   printf("\t\tAmount Charges @Rs. %4.2f  per unit :%8.2f\n",amt,gramt);
+   printf("\t\tSurchage Amount                     :%8.2f\n",sur_charge);
+   printf("\t\tNet Amount Paid By the Customer     :%8.2f\n",netamt);
+   printf("\t\tElectricity Bill = Rs. %.2f",total_amt);
   return 0;
  }
+
