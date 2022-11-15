@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+struct ebg
+   {
+    int unit;
+    int custid;
+    float amt;
+    float total_amt;
+    float sur_charge;
+    float gramt;
+    float netamt;
+    char name[30];
+   };
+    int main()
+{
+    struct ebg ebg1;
+    /* Input unit consumed from user */
+
+    printf("\t\t============================================\n");
+    printf("\n\n\t\tWELLCOME TO GESCOM ELECTRTICITY DEPARTMENT\n\n");
+
+    printf("\t        Gulbarga Electricity Supply Company Limited\n\n");
+    printf("\t\t===========================================\n");
+    printf("\t\tInput Customer ID :");
+    scanf("%d",&ebg1.custid);
+    printf("\t\tCustomer name :");
+    scanf("%s",ebg1.name);
+    printf("\t\tEnter total units consumed: ");
+    scanf("%d",&ebg1.unit);
+
+    /* Calculate electricity bill according to given conditions */
+    if(ebg1.unit <= 50)
+    {
+        ebg1.amt = ebg1.unit * 0.50;
+    }
+    else if(ebg1.unit <= 150)
+    {
+        ebg1.amt = 25 + ((ebg1.unit-50) * 0.75);
+    }
+    else if(ebg1.unit <= 250)
+    {
+        ebg1.amt = 100 + ((ebg1.unit-150) * 1.20);
+    }
+    else
+    {
+        ebg1.amt = 220 + ((ebg1.unit-250) * 1.50);
+    }
+    ebg1.gramt = ebg1.unit*ebg1.amt;
+    if (ebg1.gramt>300)
+    ebg1.sur_charge =ebg1.gramt*12/100.0;
+    ebg1.netamt = ebg1.gramt+ebg1.sur_charge;
+    if (ebg1.netamt  < 100)
+    ebg1.netamt =100;
+
+    /*
+     * Calculate total electricity bill
+     * after adding surcharge
+     */
+   ebg1.sur_charge = ebg1.amt * 0.20;
+   ebg1.total_amt  = ebg1.amt + ebg1.sur_charge;
+   printf("\t\tunit Consumed                       :%d\n",ebg1.unit);
+   printf("\t\tAmount Charges @Rs. %4.2f  per unit :%8.2f\n",ebg1.amt,ebg1.gramt);
+   printf("\t\tSurchage Amount                     :%8.2f\n",ebg1.sur_charge);
+   printf("\t\tNet Amount Paid By the Customer     :%8.2f\n",ebg1.netamt);
+   printf("\t\tElectricity Bill = Rs. %.2f",ebg1.total_amt);
+  return 0;
+ }
