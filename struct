@@ -16,6 +16,7 @@ struct ebg
     int main()
 {
     struct ebg ebg1;
+
     /* Input unit consumed from user */
 
     printf("\t\t============================================\n");
@@ -61,7 +62,7 @@ struct ebg
    ebg1.sur_charge = ebg1.amt * 0.20;
    ebg1.total_amt  = ebg1.amt + ebg1.sur_charge;
    printf("\t\tunit Consumed                       :%d\n",ebg1.unit);
-   printf("\t\tAmount Charges @Rs. %4.2f  per unit :%8.2f\n",ebg1.amt,ebg1.gramt);
+   printf("\t\tAmount Charges @Rs. %.4.2f  per unit:%8.2f\n",ebg1.amt,ebg1.gramt);
    printf("\t\tSurchage Amount                     :%8.2f\n",ebg1.sur_charge);
    printf("\t\tNet Amount Paid By the Customer     :%8.2f\n",ebg1.netamt);
    printf("\t\tElectricity Bill = Rs. %.2f",ebg1.total_amt);
