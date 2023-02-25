@@ -3,43 +3,68 @@
  */
 
 #include <stdio.h>
-
-int main()
+#include <stdlib.h>
+typedef struct
 {
-    int unit;
-    float amt, total_amt, sur_charge;
+    int unit,custid;
+    float amt,total_amt,sur_charge,gramt,netamt;
+    char name[30];
+}EBILL;
 
+    int main()
+{
+     EBILL ebill;
     /* Input unit consumed from user */
-    printf("Enter total units consumed: ");
-    scanf("%d", &unit);
+
+
+     printf("\t\t============================================\n");
+    printf("\n\n\t\tWELLCOME TO GESCOM ELECTRTICITY DEPARTMENT\n\n");
+
+    printf("\t        Gulbarga Electricity Supply Company Limited\n\n");
+    printf("\t\t===========================================\n");
+
+    printf("\t\tInput Customer ID :");
+    scanf("%d",&ebill.custid);
+    printf("\t\tCustomer name :");
+    scanf("%s",ebill.name);
+    printf("\t\tEnter total units consumed: ");
+    scanf("%d", &ebill.unit);
 
 
     /* Calculate electricity bill according to given conditions */
-    if(unit <= 50)
+    if(ebill.unit <= 50)
     {
-        amt = unit * 0.50;
+        ebill.amt = ebill.unit * 0.50;
     }
-    else if(unit <= 150)
+    else if(ebill.unit <= 150)
     {
-        amt = 25 + ((unit-50) * 0.75);
+        ebill.amt = 25 + ((ebill.unit-50) * 0.75);
     }
-    else if(unit <= 250)
+    else if(ebill.unit <= 250)
     {
-        amt = 100 + ((unit-150) * 1.20);
+        ebill.amt = 100 + ((ebill.unit-150) * 1.20);
     }
     else
     {
-        amt = 220 + ((unit-250) * 1.50);
+        ebill.amt = 220 + ((ebill.unit-250) * 1.50);
     }
+     ebill.gramt = ((ebill.unit)*(ebill.amt));
+    if (ebill.gramt>300)
+    ebill.sur_charge =ebill.gramt*12/100.0;
+    ebill.netamt = ebill.gramt+ebill.sur_charge;
+    if (ebill.netamt  < 100)
+    ebill.netamt =100;
 
     /*
      * Calculate total electricity bill
      * after adding surcharge
      */
-    sur_charge = amt * 0.20;
-    total_amt  = amt + sur_charge;
+   ebill.sur_charge = ebill.amt * 0.20;
+   ebill.total_amt  = ebill.amt + ebill.sur_charge;
+   printf("\t\tunit Consumed                       :%d\n",ebill.unit);
+   printf("\t\tAmount Charges @Rs. %4.2f  \n",ebill.amt);
+   printf("\t\tSurchage Amount                     :%8.2f\n",ebill.sur_charge);
+   printf("\t\tElectricity Bill = Rs. %.2f",ebill.total_amt);
+  return 0;
+ }
 
-    printf("Electricity Bill = Rs. %.2f", total_amt);
-
-    return 0;
-}
